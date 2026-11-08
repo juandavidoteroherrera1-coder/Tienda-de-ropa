@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Urban Style</title>
+<style>
+body{margin:0;font-family:Arial;background:#f8fafc;color:#111}
+.top{background:#111;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;flex-wrap:wrap;gap:8px}
+.top b{font-size:24px}
+.top b span{color:#f59e0b}
+.top nav a{color:#fff;text-decoration:none;font-weight:700;font-size:13px;padding:8px 10px}
+.cartbtn{background:#f59e0b;color:#111;border:none;padding:10px 16px;border-radius:99px;font-weight:900;cursor:pointer}
+.hero{background:linear-gradient(135deg,#111,#3b0764,#db2777);color:#fff;text-align:center;padding:55px 16px 50px;border-radius:0 0 28px 28px}
+.hero h1{font-size:34px;margin:0;line-height:1.1}
+.hero h1 span{color:#fde68a}
+.hero p{opacity:.9;max-width:520px;margin:12px auto}
+.btnw{background:#fff;color:#111;border:none;padding:14px 24px;border-radius:99px;font-weight:900;margin-top:10px;cursor:pointer}
+.btny{background:#f59e0b;color:#111;border:none;padding:14px 24px;border-radius:99px;font-weight:900;margin-top:10px;margin-left:6px;cursor:pointer}
+.pill{display:inline-block;background:rgba(255,255,255,.22);padding:8px 13px;border-radius:99px;font-size:12px;font-weight:700;margin:5px 2px}
+.box{background:#fff;margin:16px 14px;padding:20px 16px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
+.box h2{margin:0 0 8px 0}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.filtros button{padding:10px 14px;border-radius:99px;border:2px solid #e2e8f0;background:#fff;font-weight:800;cursor:pointer}
+.filtros button.on{background:#111;color:#fff;border-color:#111}
+select,input{padding:12px;border:2px solid #e2e8f0;border-radius:12px;background:#f8fafc;font-size:14px;width:100%;box-sizing:border-box;margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(0,0,0,.15)}
+.foto{height:170px;overflow:hidden;position:relative;background:#e2e8f0}
+.foto img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s}
+.card:hover .foto img{transform:scale(1.08)}
+.etiqueta{position:absolute;top:10px;left:10px;background:#f59e0b;color:#111;font-size:11px;font-weight:900;padding:5px 10px;border-radius:99px}
+.body{padding:14px}
+.body h3{margin:0;font-size:16px}
+.body p{margin:6px 0;color:#64748b;font-size:13px}
+.precio{font-size:19px;font-weight:900;color:#111}
+.agregar{background:#111;color:#fff;border:none;padding:12px;border-radius:99px;font-weight:800;width:100%;cursor:pointer;margin-top:8px}
+.agregar:hover{background:#f59e0b;color:#111}
+.badge2{display:inline-block;background:#dcfce7;color:#166534;font-size:11px;font-weight:800;padding:4px 9px;border-radius:99px}
+.itemcar{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin-top:10px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.itemcar img{width:60px;height:60px;object-fit:cover;border-radius:10px}
+.cant button{width:32px;height:32px;border-radius:50%;border:2px solid #ddd;background:#fff;font-weight:900;cursor:pointer}
+.eliminar{background:#fee2e2;color:#991b1b;border:none;padding:8px 12px;border-radius:99px;font-weight:800;cursor:pointer}
+.totalbox{background:#111;color:#fff;padding:16px;border-radius:16px;margin-top:14px}
+.totalbox p{display:flex;justify-content:space-between;margin:6px 0}
+.enviar{background:#f59e0b;color:#111;border:none;padding:14px;border-radius:99px;font-weight:900;width:100%;cursor:pointer;margin-top:10px}
+.ok{background:#dcfce7;color:#166534;padding:12px;border-radius:12px;font-weight:800;display:none}
+.err{background:#fee2e2;color:#991b1b;padding:12px;border-radius:12px;font-weight:800;display:none}
+footer{background:#111;color:#fff;text-align:center;padding:18px;font-size:13px;margin-top:10px}
+.wp{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;text-decoration:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}
+@media(max-width:600px){.top{justify-content:center;text-align:center}}
+</style></head>
+<body>
+
+<div class="top"><b>URBAN <span>Style</span></b><nav><a href="#inicio">Inicio</a><a href="#catalogo">Catalogo</a><a href="#carrito">Carrito</a></nav><button class="cartbtn" onclick="verCarrito()">Carrito (<span id="contador">0</span>)</button></div>
+
+<div id="inicio" class="hero">
+<h1>Viste Urbano.<br><span>Vive en tu estilo.</span></h1>
+<p>Colecciones destacadas, envio a todo el pais y pago contra entrega. Usa el cupon <b>URBAN10</b> y gana 10% de descuento.</p>
+<button class="btnw" onclick="document.getElementById('catalogo').scrollIntoView()">Ver Catalogo</button>
+<button class="btny" onclick="document.getElementById('catalogo').scrollIntoView()">Ofertas -30%</button>
+<br><span class="pill">Envio gratis desde $150.000</span><span class="pill">Devoluciones gratis</span><span class="pill">12 productos</span>
+</div>
+
+<div class="box">
+<h2>Colecciones Destacadas</h2>
+<div class="grid">
+<div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80" alt="Hoodie"><span class="etiqueta">-30% HOY</span></div><div class="body"><h3>Coleccion Street</h3><p>Hoodies, joggers y gorras.</p></div></div>
+<div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80" alt="Denim"><span class="etiqueta">NUEVO</span></div><div class="body"><h3>Coleccion Denim</h3><p>Jeans y chaquetas oversize.</p></div></div>
+<div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Basicos"><span class="etiqueta">DESDE $39.900</span></div><div class="body"><h3>Basicos Esenciales</h3><p>Camisetas y pantalonetas.</p></div></div>
+</div>
+</div>
+
+<div class="box" id="catalogo">
+<h2>Catalogo - 12 Productos</h2>
+<p style="color:#64748b;margin:4px 0">Filtra por categoria, talla y ordena por precio.</p>
+<div class="filtros" id="filtrosCat">
+<button class="on" onclick="filtrarCat(0)">Todos</button>
+<button onclick="filtrarCat(1)">Camisetas</button>
+<button onclick="filtrarCat(2)">Hoodies</button>
+<button onclick="filtrarCat(3)">Pantalones</button>
+<button onclick="filtrarCat(4)">Accesorios</button>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<select id="filtroTalla" onchange="aplicarFiltros()" style="flex:1;min-width:140px"><option value="">Todas las tallas</option><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+<select id="orden" onchange="aplicarFiltros()" style="flex:1;min-width:160px"><option value="">Ordenar por...</option><option value="menor">Precio: menor a mayor</option><option value="mayor">Precio: mayor a menor</option></select>
+</div>
+<div id="lista" class="grid" style="margin-top:14px"></div>
+</div>
+
+<div class="box" id="carrito">
+<h2>Carrito de Compras</h2>
+<div id="listaCarrito"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+<input id="cupon" placeholder="Cupon Ej: URBAN10" style="flex:1;min-width:160px">
+<button class="agregar" onclick="aplicarCupon()" style="flex:0 0 140px">Aplicar Cupon</button>
+</div>
+<p id="msgCupon" style="font-weight:800"></p>
+<div class="totalbox">
+<p><span>Subtotal:</span><b id="subtotal">$0</b></p>
+<p><span>Descuento:</span><b id="descuento">$0</b></p>
+<p><span>Envio:</span><b id="envio">$0</b></p>
+<p style="font-size:19px"><span>Total:</span><b id="total" style="color:#fde68a">$0</b></p>
+</div>
+<button class="enviar" onclick="irCheckout()">Ir a Finalizar Compra</button>
+<button class="agregar" onclick="vaciar()">Vaciar Carrito</button>
+</div>
+
+<div class="box" id="checkout">
+<h2>Finalizar Compra</h2>
+<p style="color:#64748b">Completa tus datos de envio. Sin pagos reales, es simulado.</p>
+<div id="resumenPedido" style="background:#f8fafc;padding:12px;border-radius:12px;border:1px dashed #111;margin:10px 0"></div>
+<input id="nombre" placeholder="Nombre completo">
+<input id="telefono" placeholder="Telefono Ej: 3145395457">
+<input id="direccion" placeholder="Direccion Ej: Calle 10 # 5-20 Canalete">
+<input id="ciudad" placeholder="Ciudad Ej: Canalete">
+<select id="pago"><option value="">Metodo de pago</option><option>Contra entrega</option><option>Nequi</option><option>Transferencia</option></select>
+<p id="msgError" class="err"></p>
+<p id="msgOk" class="ok"></p>
+<button class="enviar" onclick="confirmarPedido()">Confirmar Pedido</button>
+<div id="confirmacion" style="display:none;background:#dcfce7;padding:16px;border-radius:14px;margin-top:12px;text-align:center"></div>
+</div>
+
+<footer>2026 Urban Style - Tienda Urbana | Cupon URBAN10 = 10% OFF</footer>
+<a class="wp" href="https://wa.me/573145395457" target="_blank">💬</a>
+
+<script>
+var productos=[
+{id:1,nombre:"Camiseta Oversize Negra",cat:"Camisetas",catNum:1,tallas:"S M L XL",precio:49900,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80",tag:"TOP VENTAS"},
+{id:2,nombre:"Camiseta Grafica Skate",cat:"Camisetas",catNum:1,tallas:"S M L",precio:59900,img:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=600&q=80",tag:"NUEVO"},
+{id:3,nombre:"Camiseta Basica Blanca",cat:"Camisetas",catNum:1,tallas:"S M L XL",precio:39900,img:"https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=600&q=80",tag:"BASICO"},
+{id:4,nombre:"Hoodie Oversize Gris",cat:"Hoodies",catNum:2,tallas:"M L XL",precio:119900,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",tag:"-30%"},
+{id:5,nombre:"Hoodie con Capucha Negra",cat:"Hoodies",catNum:2,tallas:"S M L",precio:129900,img:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",tag:"TOP VENTAS"},
+{id:6,nombre:"Buzo Crewneck Beige",cat:"Hoodies",catNum:2,tallas:"S M L XL",precio:99900,img:"https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=600&q=80",tag:"NUEVO"},
+{id:7,nombre:"Jean Baggy Azul",cat:"Pantalones",catNum:3,tallas:"S M L",precio:139900,img:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80",tag:"TOP VENTAS"},
+{id:8,nombre:"Jogger Cargo Negro",cat:"Pantalones",catNum:3,tallas:"M L XL",precio:109900,img:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=600&q=80",tag:""},
+{id:9,nombre:"Pantaloneta Deportiva",cat:"Pantalones",catNum:3,tallas:"S M L XL",precio:54900,img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=600&q=80",tag:"OFERTA"},
+{id:10,nombre:"Gorra Plana Urban",cat:"Accesorios",catNum:4,tallas:"M L",precio:64900,img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",tag:"NUEVO"},
+{id:11,nombre:"Bolso Canguro Street",cat:"Accesorios",catNum:4,tallas:"M",precio:79900,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",tag:""},
+{id:12,nombre:"Medias Urban Pack x3",cat:"Accesorios",catNum:4,tallas:"S M L",precio:29900,img:"https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=600&q=80",tag:"PACK"}
+];
+var catActual=0;
+var carrito=[];
+try{var guardado=localStorage.getItem("carritoUrban");if(guardado){carrito=JSON.parse(guardado);}}catch(e){carrito=[];}
+var cuponActivo=false;
+function dinero(n){return "$"+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");}
+function guardar(){localStorage.setItem("carritoUrban",JSON.stringify(carrito));}
+function mostrarProductos(){
+var lista=[];
+for(var i=0;i<productos.length;i++){var p=productos[i];if(catActual!=0&&p.catNum!=catActual)continue;var tallaSel=document.getElementById("filtroTalla").value;if(tallaSel!=""&&p.tallas.indexOf(tallaSel)==-1)continue;lista.push(p);}
+var orden=document.getElementById("orden").value;
+if(orden=="menor"){lista.sort(function(a,b){return a.precio-b.precio;});}
+if(orden=="mayor"){lista.sort(function(a,b){return b.precio-a.precio;});}
+var h="";
+for(var k=0;k<lista.length;k++){var x=lista[k];var etiqueta="";if(x.tag!=""){etiqueta="<span class=etiqueta>"+x.tag+"</span>";}h+="<div class=card><div class=foto><img src=\""+x.img+"\" alt=\""+x.nombre+"\">"+etiqueta+"</div><div class=body><h3>"+x.nombre+"</h3><p>"+x.cat+" | Tallas: "+x.tallas+"</p><span class=badge2>En stock</span><p class=precio>"+dinero(x.precio)+"</p><button class=agregar onclick=agregar("+x.id+")>Agregar al Carrito</button></div></div>";}
+if(h==""){h="<p>No hay productos con ese filtro.</p>";}
+document.getElementById("lista").innerHTML=h;
+}
+function filtrarCat(n){
+catActual=n;
+var btns=document.getElementById("filtrosCat").getElementsByTagName("button");
+for(var i=0;i<btns.length;i++)btns[i].className="";
+btns[n].className="on";
+aplicarFiltros();
+}
+function aplicarFiltros(){mostrarProductos();}
+function agregar(id){
+var encontrado=null;
+for(var i=0;i<carrito.length;i++)if(carrito[i].id==id)encontrado=carrito[i];
+if(encontrado){encontrado.cant++;}
+else{carrito.push({id:id,cant:1});}
+guardar();actualizarCarrito();
+alert("Agregado al carrito");
+}
+function cambiarCant(id,delta){
+for(var i=0;i<carrito.length;i++)if(carrito[i].id==id){carrito[i].cant+=delta;if(carrito[i].cant<=0)carrito.splice(i,1);break;}
+guardar();actualizarCarrito();
+}
+function quitar(id){
+for(var i=0;i<carrito.length;i++)if(carrito[i].id==id){carrito.splice(i,1);break;}
+guardar();actualizarCarrito();
+}
+function vaciar(){carrito=[];cuponActivo=false;guardar();actualizarCarrito();document.getElementById("msgCupon").innerHTML="";}
+function buscarProd(id){for(var i=0;i<productos.length;i++)if(productos[i].id==id)return productos[i];return null;}
+function actualizarCarrito(){
+var totalCant=0;
+for(var i=0;i<carrito.length;i++)totalCant+=carrito[i].cant;
+document.getElementById("contador").innerHTML=totalCant;
+var h="";
+var sub=0;
+for(var k=0;k<carrito.length;k++){var item=carrito[k];var p=buscarProd(item.id);var subItem=p.precio*item.cant;sub+=subItem;h+="<div class=itemcar><img src=\""+p.img+"\"><div><b>"+p.nombre+"</b><br>"+dinero(p.precio)+" c/u</div><div class=cant><button onclick=cambiarCant("+p.id+",-1)>-</button> <b>"+item.cant+"</b> <button onclick=cambiarCant("+p.id+",1)>+</button></div><div><b>"+dinero(subItem)+"</b><br><button class=eliminar onclick=quitar("+p.id+")>Quitar</button></div></div>";}
+if(h==""){h="<p>Tu carrito esta vacio. Agrega productos del catalogo.</p>";}
+document.getElementById("listaCarrito").innerHTML=h;
+var desc=0;
+if(cuponActivo){desc=Math.round(sub*0.10);}
+var envio=0;
+if(sub>0){envio=12000;if(sub-desc>=150000)envio=0;}
+var total=sub-desc+envio;
+document.getElementById("subtotal").innerHTML=dinero(sub);
+document.getElementById("descuento").innerHTML="-"+dinero(desc);
+document.getElementById("envio").innerHTML=envio==0?"GRATIS":dinero(envio);
+document.getElementById("total").innerHTML=dinero(total);
+var res="<b>Resumen:</b> "+totalCant+" articulos | Total: "+dinero(total);
+if(cuponActivo)res+=" | Cupon URBAN10 aplicado (-10%)";
+document.getElementById("resumenPedido").innerHTML=res;
+}
+function aplicarCupon(){
+var c=document.getElementById("cupon").value.toUpperCase().replace(/ /g,"");
+if(c=="URBAN10"){cuponActivo=true;document.getElementById("msgCupon").innerHTML="Cupon aplicado: 10% de descuento";document.getElementById("msgCupon").style.color="green";actualizarCarrito();}
+else{document.getElementById("msgCupon").innerHTML="Cupon no valido. Prueba URBAN10";document.getElementById("msgCupon").style.color="red";}
+}
+function verCarrito(){document.getElementById("carrito").scrollIntoView();}
+function irCheckout(){document.getElementById("checkout").scrollIntoView();}
+function confirmarPedido(){
+var nom=document.getElementById("nombre").value;
+var tel=document.getElementById("telefono").value.replace(/[^0-9]/g,"");
+var dir=document.getElementById("direccion").value;
+var ciu=document.getElementById("ciudad").value;
+var pago=document.getElementById("pago").value;
+var err=document.getElementById("msgError");
+var ok=document.getElementById("msgOk");
+err.style.display="none";ok.style.display="none";
+if(nom.length<3){err.innerHTML="Escribe tu nombre completo";err.style.display="block";return;}
+if(tel.length<7){err.innerHTML="Escribe un telefono valido";err.style.display="block";return;}
+if(dir.length<5){err.innerHTML="Escribe tu direccion completa";err.style.display="block";return;}
+if(ciu.length<3){err.innerHTML="Escribe tu ciudad";err.style.display="block";return;}
+if(pago==""){err.innerHTML="Elige un metodo de pago";err.style.display="block";return;}
+if(carrito.length==0){err.innerHTML="Tu carrito esta vacio. Agrega productos primero";err.style.display="block";return;}
+var numPedido=Math.floor(Math.random()*90000)+10000;
+ok.innerHTML="Pedido confirmado. Numero: "+numPedido;ok.style.display="block";
+var totalTxt=document.getElementById("total").innerHTML;
+document.getElementById("confirmacion").style.display="block";
+document.getElementById("confirmacion").innerHTML="<h3>Gracias "+nom+"!</h3><p>Tu pedido <b>#"+numPedido+"</b> esta en camino a "+dir+", "+ciu+".</p><p>Pago: "+pago+" | Total pagado: <b>"+totalTxt+"</b></p><p>Te llamaremos al "+tel+" para confirmar.</p>";
+carrito=[];cuponActivo=false;guardar();actualizarCarrito();
+}
+mostrarProductos();
+actualizarCarrito();
+</script>
+</body></html>
